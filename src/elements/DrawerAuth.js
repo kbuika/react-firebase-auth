@@ -8,6 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import { Link } from "react-router-dom";
 import SignOut from '../../src/components/SignOut';
 import * as ROUTES from '../constants/routes';
+// import { withAuthorization } from '../components/Session';
+
 
 
 const useStyles = makeStyles({
@@ -37,7 +39,8 @@ export default function DrawerComponentAuth() {
     setState({ ...state, [side]: open });
   };
 
-  
+  const condition = authUser =>
+  authUser && authUser.email === 'kibuika1@gmail.com';
 
   const sideList = side => (
     <div
@@ -54,6 +57,9 @@ export default function DrawerComponentAuth() {
           <ListItem button >
             <Link to={ROUTES.HOME} className={classes.link}>Home</Link>  
           </ListItem>
+          {condition ? <ListItem button >
+            <Link to={ROUTES.ADMIN} className={classes.link}>Admin</Link>  
+          </ListItem> : <h6>{}</h6>}
           <Divider />
           <ListItem button >
              <SignOut />  
