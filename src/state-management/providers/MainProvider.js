@@ -91,6 +91,15 @@ handleUserSignIn = e => {
         
 }
 
+handleSignOut = e => {
+    e.preventDefault();
+    this.props.firebase
+        .doSignOut().then(authUser => {
+            this.props.history.push(ROUTES.LANDING);
+
+        });
+}
+
 
     render() { 
 
@@ -110,6 +119,7 @@ handleUserSignIn = e => {
                     handleUserSignUp: this.handleUserSignUp,
                     handleSignInInput: this.handleSignInInput,
                     handleUserSignIn: this.handleUserSignIn,
+                    handleSignOut: this.handleSignOut
 
                 }}
             >

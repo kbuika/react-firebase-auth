@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import { Link } from "react-router-dom";
+import SignOut from '../components/SignOut';
 import * as ROUTES from '../constants/routes';
 
 
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function DrawerComponent() {
+export default function DrawerComponentNonAuth() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
@@ -35,6 +36,8 @@ export default function DrawerComponent() {
 
     setState({ ...state, [side]: open });
   };
+
+  
 
   const sideList = side => (
     <div
@@ -58,9 +61,9 @@ export default function DrawerComponent() {
             <Link to={ROUTES.SIGN_UP} className={classes.link}>Sign up</Link>
           </ListItem>
           <Divider />
-          {/* <ListItem button >
-            <Link to='/' className={classes.link}> <Button variant='contained' color='secondary'>Log Out</Button> </Link> 
-          </ListItem> */}
+          <ListItem button >
+             <SignOut />  
+          </ListItem>
           
             
             
