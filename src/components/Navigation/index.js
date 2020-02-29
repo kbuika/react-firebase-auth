@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import DrawerComponentAuth from '../../elements/DrawerAuth';
 import DrawerComponentNonAuth from '../../elements/DrawerNonAuth';
+import { AuthUserContext } from '../Session';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -23,8 +24,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Navigation = ({ authUser }) => (
-<div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+const Navigation = () => (
+<div>
+  <AuthUserContext.Consumer>
+  {authUser => 
+    authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+  </AuthUserContext.Consumer>
+</div>
 )
 
 function NavigationAuth() {
