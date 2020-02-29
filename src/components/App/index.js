@@ -8,6 +8,7 @@ import SignIn from '../SignIn';
 import Landing from '../Landing';
 import Home from '../Home';
 import SignUp from '../SignUp';
+import AdminPage from '../Admin';
 
 const App= () => (
             <Router>
@@ -15,9 +16,11 @@ const App= () => (
 
                 {/* <hr /> */}
                 <Route exact path={ROUTES.LANDING} component={Landing} />
-                <Route exact path={ROUTES.HOME} component={Home} />
-                <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
-                <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
+                <Route  path={ROUTES.HOME} component={Home} />
+                <Route  path={ROUTES.SIGN_IN} component={SignIn} />
+                <Route  path={ROUTES.SIGN_UP} component={SignUp} />
+                <Route  path={ROUTES.ADMIN} component={AdminPage} />
+
 
             </Router>
 )

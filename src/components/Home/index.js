@@ -1,9 +1,21 @@
 import React from 'react'
+import { withAuthorization, AuthUserContext } from '../Session';
+
 
 function Home() {
     return (
-        <div>Home</div>
+        <AuthUserContext.Consumer>
+            {authUser => (
+                <div>
+                    <div>Home</div>
+                    <p>Accessible to every signed in user </p>
+                </div>
+            )}
+        </AuthUserContext.Consumer>
+        
     )
 }
 
-export default Home
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Home);
