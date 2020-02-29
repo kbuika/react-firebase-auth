@@ -32,6 +32,10 @@ class MainProvider extends Component {
          }
     }
 
+    componentDidMount() {
+        
+    }
+
     // user registration details
 handleSignUpInput = (e) => {
     const value = e.target.value;
@@ -49,8 +53,22 @@ handleSignUpInput = (e) => {
 // user registration function
 handleUserSignUp = e => {
     e.preventDefault();
+    // const {userSignUpInfo.email, userSignUpInfo.firstName, userSignUpInfo.lastName} = this.state;
+    let userData = {
+        firstName: this.state.userSignUpInfo.firstName,
+        lastName: this.state.userSignUpInfo.lastName,
+        email: this.state.userSignUpInfo.email,
+        dateRegisered: new Date()
+    }
+
     this.props.firebase
         .doRegister(this.state.userSignUpInfo.email, this.state.userSignUpInfo.password)
+            .then(authUser => {
+                // create user in firestore
+                return this.props.firebase
+                    .user(authUser.user.uid)
+                    .set(userData)
+            })
             .then(authUser => {
                 this.setState({ ...INITIAL_USER_REG });
                 this.props.history.push(ROUTES.HOME);
