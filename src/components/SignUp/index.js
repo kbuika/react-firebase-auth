@@ -12,6 +12,7 @@ import MainProvider from '../../state-management/providers/MainProvider';
 import { MainContext } from '../../state-management/Context';
 
 
+
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
@@ -59,6 +60,7 @@ export default function SignUp() {
               <Typography component="h1" variant="h5">
                 Sign up
               </Typography>
+              {context.state.signUpError != null ? <h5 style={{color: 'red'}}>{context.state.signUpError.message}</h5> : <h6>{}</h6>}
               <form className={classes.form} noValidate >
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
@@ -124,6 +126,7 @@ export default function SignUp() {
                   fullWidth
                   variant="contained"
                   color="primary"
+                  disabled={context.isInvalid}
                   className={classes.submit}
                   onClick={context.handleUserSignUp}
                 >
